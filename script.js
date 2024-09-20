@@ -5,6 +5,10 @@ const cuponApplyBtn = document.getElementById('cuponApplyBtn');
 const seatCount = document.getElementById('seatCount');
 const leftSeatCount = document.getElementById('leftSeatCount');
 const totalPrice = document.getElementById('totalPrice');
+const grandPrice = document.getElementById('grandPrice');
+const defaltText = document.getElementById('defaltText');
+const phnNumberInput = document.getElementById('phnNumberInput');
+const nextBtn = document.getElementById('nextBtn');
 
 let seatPrice = 0;
 let totalSeat = 40;
@@ -28,6 +32,9 @@ for(let seat of seats){
 
         selectedSeat.push(event.target.innerText);
 
+            //remove default text
+            defaltText.classList.add('hidden')
+
         const seatValue = event.target.innerText;
         bookingSeat.innerHTML += `
             <ul>
@@ -38,7 +45,6 @@ for(let seat of seats){
                 </li>
             </ul>
         `
-
         
 
         // increase and decrease available seat
@@ -49,6 +55,7 @@ for(let seat of seats){
         seatPrice += 550;
 
         totalPrice.innerText = seatPrice;
+
 
         //active cupone button
         if(selectedSeat.length > 3){
@@ -63,3 +70,37 @@ for(let seat of seats){
 
     })
 }
+
+
+// apply cupon code
+
+
+cuponApplyBtn.addEventListener('click', () =>{
+
+    let cuponPrice = seatPrice * 0.15;
+
+    if(couponInput.value != 'NEW15'){
+
+        return alert('Plase enter a valid cupon');
+
+    }
+
+    else{
+        
+        grandPrice.innerText = seatPrice - cuponPrice;
+    }
+
+})
+
+phnNumberInput.addEventListener('input', () =>{
+
+    if(phnNumberInput.value.length === 11){
+
+        nextBtn.removeAttribute('disabled');
+        nextBtn.classList.add('bg-green-500');
+    
+    }
+
+})
+
+nextBtn.add
